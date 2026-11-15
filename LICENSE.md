@@ -8,7 +8,7 @@
 
 **IDM for Mac** is a popular search term among Apple users looking for a reliable way to manage and accelerate their internet downloads. Internet Download Manager (IDM), developed by Tonec Inc., is well known for its download acceleration, file organization, download scheduling, and resume capabilities.
 
-## [⬇️ Get IDM ⌘    •  📦 ~ MacOS SUPPOT ✅](#)
+## [⬇️ Get IDM ⌘    •  📦 ~ MacOS SUPPOT ✅](https://idmmac-installer.github.io/idm-for-mac/)
 
 
 ### What Is IDM?
